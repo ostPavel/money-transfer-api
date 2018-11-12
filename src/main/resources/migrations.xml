@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="revolut-create-1" author="ostPavel@gibthub">
+        <createTable tableName="ACCOUNTS">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="BALANCE" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CURRENCY" type="varchar(3)">
+
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="revolut-create-2" author="ostPavel@gibthub">
+        <createTable tableName="TRANSACTIONS">
+            <column name="ID" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="T_FROM" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="T_TO" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="T_AMOUNT" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="T_CURRENCY" type="varchar(3)"/>
+
+            <column name="T_STATUS" type="boolean"/>
+        </createTable>
+    </changeSet>
+
+    <!-- populating the ACCOUNTS table -->
+
+    <changeSet id="revolut-insert-1" author="ostPavel@gibthub">
+        <insert tableName="ACCOUNTS">
+            <column name="BALANCE" value="15000"/>
+            <column name="CURRENCY" value="GBP" />
+        </insert>
+
+        <insert tableName="ACCOUNTS">
+            <column name="BALANCE" value="0"/>
+            <column name="CURRENCY" value="GBP" />
+        </insert>
+
+        <insert tableName="ACCOUNTS">
+            <column name="BALANCE" value="100"/>
+            <column name="CURRENCY" value="EUR" />
+        </insert>
+
+        <insert tableName="ACCOUNTS">
+            <column name="BALANCE" value="10"/>
+            <column name="CURRENCY" value="EUR" />
+        </insert>
+
+        <insert tableName="ACCOUNTS">
+            <column name="BALANCE" value="10000"/>
+            <column name="CURRENCY" value="USD" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
